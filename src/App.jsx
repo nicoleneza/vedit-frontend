@@ -2,9 +2,9 @@ import React from "react";
 import "./App.css";
 import Post from "./App/post";
 import Feed from "./App/feed";
-// import Connections from "./App/connections";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Connections from "./App/connections";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+// import Connections from "./App/connections";
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Post />} />
         <Route path="/feed" element={<Feed />} />
-        <Route path="/connnections" element={<Connections />} />
+        <Route path="/connections" element={<Connections />} />
       </Routes>
       </>
 
