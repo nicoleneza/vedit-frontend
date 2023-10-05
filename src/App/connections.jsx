@@ -22,13 +22,16 @@ export default function Connections() {
             <span className='text-3xl'>Connections</span>
             <p className='text-lg'>view all users you follow all around and manage them.you can unfollow if you want.</p>
         </div>
-        <div>
+        <div className=' max-w'>
   {followers.map((user) => {
     return (
-      <div key={user.id} className=''>
-        <img src={user.profile} alt='my picture' />
+      <div key={user.id} className='bg-black w-2/4 h-2/4'>
+        <BsThreeDotsVertical style={{color:"white",width:"30px",height:"30px"}}/>
+        <div className='flex flex-col justify-center'>
+        <img src={user.profile} alt='my picture' className='rounded-full w-40 h-40' />
         <span>{user.username}</span>
         <span>Followed you</span>
+        </div>
       </div>
     );
   })}
