@@ -4,6 +4,9 @@ import Navbar from "../components/Navbar";
 import imageUrlBuilder from "@sanity/image-url";
 import client from "../client";
 import VideoThumbnail from "react-video-thumbnail";
+import { MdSend } from "react-icons/md"
+
+
 const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {
   return builder.image(source);
@@ -25,7 +28,7 @@ export default function Post() {
             _ref: document._id,
           },
         },
-        description: "cute",
+        description: "title",
         // slug: "cute",
       });
       console.log(res);
@@ -59,7 +62,7 @@ export default function Post() {
       <div>
         <Navbar />
         <div className="">
-          <span>Posts</span>
+          <span className="text-white">Posts</span>
           {video && (
             // <video>controls width="50" src={URL.createObjectURL(video)}</video>
             <></>
@@ -73,37 +76,34 @@ export default function Post() {
           // className=" text-white font-bold text-lg  float-right mr-48 rounded-lg bg-purple-600  w-36 h-12"
           // onClick={setFile}
         />
-        <button className="p-2 bg-gray-50" onClick={handleSubmit}>
-          submit
+        <button className="p-2 gap-3 w-36 text-white items-center justify-center float-right mr-20 rounded-md bg-purple-600 text-xl flex flex-row " onClick={handleSubmit}>
+          Post
+          <MdSend style={{color:"white",backgroundcolor:"white",height:"30px",height:"30px"}}/>
         </button>
       </div>
       {file &&  <video
         controls
+        
         width="100"
-        height="100"
+        height="1000"
         preload="auto"
         src={URL.createObjectURL(file)}
       ></video>}
      
       <div className="text-white">
         {video?.map((song) => (
-          <div key={song._id}>
+          <div key={song._id} className="">
             {/* <span>{song.title}</span> */}
             <p>{song.description}</p>
             {video && (
               <>
-                {/* <img src={urlFor(song.image)} height={100} width={100} alt="" /> */}
-                {/* <VideoThumbnail
-                  videoUrl={song.video.asset.url}
-                  thumbnailHandler={(thumbnail) => console.log(thumbnail)}
-                  width={1020}
-                  height={680}
-                />     */}
                 <video
                   controls
                   width="100"
+                  height="100"
                   preload="auto"
                   src={song.video.asset.url}
+                  
                 ></video>
               </>
             )}
