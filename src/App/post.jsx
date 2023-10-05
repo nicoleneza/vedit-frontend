@@ -3,22 +3,23 @@ import sanityClient from "../client";
 import Navbar from "../components/Navbar";
 import imageUrlBuilder from "@sanity/image-url";
 import client from "../client";
-
+import VideoThumbnail from "react-video-thumbnail";
 const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {
   return builder.image(source);
 }
 export default function Post() {
-  const [file, setfile] = useState(null);
+  const [file, setFile] = useState(null);
   const [video, setVideo] = useState(null);
 
   const handleSubmit = async () => {
     try {
-      const document = await client.assets.upload("file", file);
+      const document = await client.assets.upload("file", file, {});
+      console.log(document);
       const res = await client.create({
         _type: "song",
-        image: {
-          _type: "video",
+        video: {
+          _type: "file",
           asset: {
             _type: "reference",
             _ref: document._id,
@@ -39,9 +40,9 @@ export default function Post() {
           slug,
           _id,
           description,
-          image {
+          video {
             asset -> {
-              _id
+              url
             }
           }
         }`
@@ -64,17 +65,26 @@ export default function Post() {
             <></>
           )}
         </div>
-        <button 
+        <input
           type="file"
           onChange={(e) => {
-            setfile(e.target.files[0]);
+            setFile(e.target.files[0]);
           }}
-          className=" text-white font-bold text-lg  float-right mr-48 rounded-lg bg-purple-600  w-36 h-12"
-      >Upload</button>
+          // className=" text-white font-bold text-lg  float-right mr-48 rounded-lg bg-purple-600  w-36 h-12"
+          // onClick={setFile}
+        />
         <button className="p-2 bg-gray-50" onClick={handleSubmit}>
           submit
         </button>
       </div>
+      {file &&  <video
+        controls
+        width="100"
+        height="100"
+        preload="auto"
+        src={URL.createObjectURL(file)}
+      ></video>}
+     
       <div className="text-white">
         {video?.map((song) => (
           <div key={song._id}>
@@ -83,9 +93,18 @@ export default function Post() {
             {video && (
               <>
                 {/* <img src={urlFor(song.image)} height={100} width={100} alt="" /> */}
-                <video>
-                  {/* controls width="200" src={URL.createObjectURL(video)} */}
-                </video>
+                {/* <VideoThumbnail
+                  videoUrl={song.video.asset.url}
+                  thumbnailHandler={(thumbnail) => console.log(thumbnail)}
+                  width={1020}
+                  height={680}
+                />     */}
+                <video
+                  controls
+                  width="100"
+                  preload="auto"
+                  src={song.video.asset.url}
+                ></video>
               </>
             )}
           </div>
