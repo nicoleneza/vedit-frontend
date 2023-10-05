@@ -48,7 +48,7 @@ export default function Feed() {
     </div>
             </div>
         </div>
-        <div className=' float-left'>
+        <div className=' floa-left'>
         <button 
           type="file"
           onChange={(e) => {

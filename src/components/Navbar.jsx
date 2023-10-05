@@ -53,6 +53,9 @@ export default function Navbar() {
           <IoIosNotificationsOutline
             style={{ width: "40px", height: "40px", color: "white" }}
           />
+          <Link>
+          <img src="./../public/" alt="" />
+          </Link>
         </div>
       </div>
     </div>
