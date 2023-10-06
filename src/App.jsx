@@ -1,5 +1,4 @@
 import React from "react";
-import "./App.css";
 import Post from "./App/post";
 import Feed from "./App/feed";
 import Connections from "./App/connections";

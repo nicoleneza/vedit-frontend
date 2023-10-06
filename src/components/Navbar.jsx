@@ -15,48 +15,46 @@ export default function Navbar() {
   };
 
   return (
-    <div className="text-white">
-      <div className=" w-full  flex flex-row  h-24  gap-x-40  overflow-hidden justify-center">
-        <div className=" text-5xl  mr-96 flex items-center">
-          <Link to={"/"} className="">
-            Vedit
-          </Link>
-        </div>
-        <div className="flex items-center text-xl  gap-x-40">
-          <Link
-            to={"/"}
-            className={`font-bold px-3 py-2  rounded-lg hover:bg-slate-100 hover:text-slate-900 ${
-              clicked === true ? "text-purple-700" : ""
-            }`}
-            onClick={FeedHandler}
-          >
-            Feed
-          </Link>
-          <Link
-            to={"/dash"}
-            className={`font-bold px-3 py-2  rounded-lg  ${
-              clicked === true ? "text-purple-700" : ""
-            }`}
-          >
-            Post
-          </Link>
-          <Link
-            to={"/projects"}
-            className={`font-bold px-3 py-2  rounded-lg hover:bg-slate-100 hover:text-slate-900 ${
-              clicked === true ? "text-purple-700" : ""
-            }`}
-          >
-            Connections
-          </Link>
-        </div>
-        <div className="flex items-center cursor-pointer">
-          <IoIosNotificationsOutline
-            style={{ width: "40px", height: "40px", color: "white" }}
-          />
-          <Link>
+    <div className="w-full flex justify-between items-center px-10 py-3">
+      <Link to={"/"} className="text-xl">
+        Vedit
+      </Link>
+
+      <div className="flex items-center text-xl">
+        <Link
+          to={"/"}
+          className={`font-bold px-3 py-2  rounded-lg hover:bg-slate-100 hover:text-slate-900 ${
+            clicked === true ? "text-purple-700" : ""
+          }`}
+          onClick={FeedHandler}
+        >
+          Feed
+        </Link>
+        <Link
+          to={"/dash"}
+          className={`font-bold px-3 py-2  rounded-lg  ${
+            clicked === true ? "text-purple-700" : ""
+          }`}
+        >
+          Post
+        </Link>
+        <Link
+          to={"/projects"}
+          className={`font-bold px-3 py-2  rounded-lg hover:bg-slate-100 hover:text-slate-900 ${
+            clicked === true ? "text-purple-700" : ""
+          }`}
+        >
+          Connections
+        </Link>
+      </div>
+
+      <div className="flex items-center cursor-pointer">
+        <IoIosNotificationsOutline
+          style={{ width: "40px", height: "40px", color: "white" }}
+        />
+        <Link>
           <img src="./../public/" alt="" />
-          </Link>
-        </div>
+        </Link>
       </div>
     </div>
   );
