@@ -6,12 +6,13 @@ import "./feed.css";
 import { AiOutlineHeart } from "react-icons/ai";
 import { FaRegComment } from "react-icons/fa";
 import { PiShareFatBold } from "react-icons/pi";
+import { useNavigate } from "react-router-dom";
 
 export default function Feed() {
   const [file, setfile] = useState(null);
   const [video, setVideo] = useState(null);
   const [followers, setFollowers] = useState("");
-
+  const navigate = useNavigate();
   const handleImageChange = (e) => {
     setVideo(URL.createObjectURL(e.target.files[0]));
   };
@@ -47,12 +48,18 @@ export default function Feed() {
           <div className="w-[70%] h-[500px]">
             <div className="flex justify-between items-center">
               <h1 className="text-2xl">Feed</h1>
-              <button className="bg-purple-600 p-2 rounded-md shadow-md">
+              <button
+                className="bg-purple-600 p-2 rounded-md shadow-md"
+                onClick={() => navigate("/")}
+              >
                 Upload
               </button>
             </div>
-            <div id="container" className="flex justify-start items-center flex-col gap-32">
-              {posts.map((post, i) => (
+            <div
+              id="container"
+              className="flex justify-start items-center flex-col gap-32"
+            >
+              {posts.reverse().map((post, i) => (
                 <Post key={i} {...post} />
               ))}
             </div>
